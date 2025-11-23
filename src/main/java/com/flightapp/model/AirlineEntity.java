@@ -7,16 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Document("airlines")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Document("passengers")
-public class PassengerEntity {
+@AllArgsConstructor
+public class AirlineEntity {
 
 	@Id
 	private int id;
-	private String name;
-	private String age;
-	private String seatNumber;
-	private String mealPreference;
+	private String airlineName;
 }
