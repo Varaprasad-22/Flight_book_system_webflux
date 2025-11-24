@@ -42,7 +42,7 @@ public class FlightBookingControllerTest {
 	private PassengerDto passenger;
 
 	@BeforeEach
-	void setup() {
+	void setUp() {
 
 		passenger = new PassengerDto("Vara", "male", 21, "Veg", "1A");
 
