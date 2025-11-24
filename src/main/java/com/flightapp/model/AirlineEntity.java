@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class AirlineEntity {
 
 	@Id
-	private int id;
+	private String id;
 	private String airlineName;
 }

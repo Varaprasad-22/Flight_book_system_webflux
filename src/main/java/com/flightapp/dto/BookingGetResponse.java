@@ -10,8 +10,32 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingGetResponse {
-	private String flightId;
+	private int flightId;
 	private String pnr;
 	private List<PassengerDto> passengersList;
+	public BookingGetResponse(int i, String pnr, List<PassengerDto> passengersList) {
+		// TODO Auto-generated constructor stub
+		this.flightId = i;
+	    this.pnr = pnr;
+	    this.passengersList = passengersList;
+	}
+	public int getFlightId() {
+		return flightId;
+	}
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
+	public String getPnr() {
+		return pnr;
+	}
+	public void setPnr(String pnr) {
+		this.pnr = pnr;
+	}
+	public List<PassengerDto> getPassengersList() {
+		return passengersList;
+	}
+	public void setPassengersList(List<PassengerDto> passengersList) {
+		this.passengersList = passengersList;
+	}
 
 }

@@ -34,9 +34,7 @@ public class FlightBookingController {
 	
 	@PostMapping("/airline/inventory/add")
 	public Mono<ResponseEntity<Integer>> addFlight(@RequestBody @Valid FlightDto flight){
-		return flightService.addFlight(flight).
-				map(save->ResponseEntity.status(HttpStatus.CREATED)
-						.body(save.getFlightId()));
+		return flightService.addFlight(flight);
 	}
 	
 	@PostMapping("/search")
@@ -46,19 +44,13 @@ public class FlightBookingController {
 	
 	@PostMapping("/booking/{flightId}")
 	public Mono<ResponseEntity<String>> flightBooking(@Valid @RequestBody BookingDto bookingData,@PathVariable int flightId){
-		return bookingService.bookTicket(bookingData,flightId)
-				.map(save->ResponseEntity.status(HttpStatus.CREATED)
-						.body(save.getPnr()));
+		return bookingService.bookTicket(bookingData,flightId);
 	}
 	@GetMapping("/ticket/{pnr}")
 	public Mono<ResponseEntity<BookingGetResponse>> bookingDetails(@PathVariable String pnr) {
-		BookingGetResponse a = null;
-		a = bookingService.getBookingDetails(pnr);
-		if (a == null) {
-			return ResponseEntity.notFound().build();
-		} else {
-			return ResponseEntity.ok(a);
-		}
+		return bookingService.getBookingDetails(pnr)
+	            .map(ResponseEntity::ok)
+	            .onErrorResume(e -> Mono.just(ResponseEntity.notFound().build()));
 	}
 	
 	@GetMapping("/booking/history/{email}")

@@ -23,5 +23,53 @@ public class FlightDto {
 	private int totalSeats;
 	@Min(value = 1, message = "Price must be greater than 0")
 	private double price;
+	public String getAirlineName() {
+		return airlineName;
+	}
+	public void setAirlineName(String airlineName) {
+		this.airlineName = airlineName;
+	}
+	public String getFlightNumber() {
+		return flightNumber;
+	}
+	public void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
+	}
+	public String getFromPlace() {
+		return fromPlace;
+	}
+	public void setFromPlace(String fromPlace) {
+		this.fromPlace = fromPlace;
+	}
+	public String getToPlace() {
+		return toPlace;
+	}
+	public void setToPlace(String toPlace) {
+		this.toPlace = toPlace;
+	}
+	public LocalDateTime getArrivalTime() {
+		return arrivalTime;
+	}
+	public void setArrivalTime(LocalDateTime arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+	public LocalDateTime getDepatureTime() {
+		return depatureTime;
+	}
+	public void setDepatureTime(LocalDateTime depatureTime) {
+		this.depatureTime = depatureTime;
+	}
+	public int getTotalSeats() {
+		return totalSeats;
+	}
+	public void setTotalSeats(int totalSeats) {
+		this.totalSeats = totalSeats;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
 }
