@@ -2,6 +2,8 @@ package com.flightapp.dto;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchDto {
+	@NotBlank(message = "From place is required")
 	private String fromPlace;
+	@NotBlank(message = "To place is required")
 	private String toPlace;
+	@NotNull(message = "Departure date is required")
 	private LocalDate depatureDate;
+	@NotBlank(message = "Trip type is required (oneWay / roundTrip)")
 	private String tripType;
 	private LocalDate returnDate;
 	public String getFromPlace() {

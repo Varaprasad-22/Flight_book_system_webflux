@@ -1,5 +1,6 @@
 package com.flightapp.dto;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PassengerDto {
-
+	@NotBlank(message = "Passenger name is required")
 	private String name;
+	@NotBlank(message = "Gender is required")
 	private String gender;
+	@Min(value = 1, message = "Age must be valid")
 	private int age;
+	@NotBlank(message = "Meal preference is required")
 	private String meal;
+	@NotBlank(message = "Seat number is required")
 	private String seatNo;
 	 public PassengerDto(String name, String gender, int age, String meal, String seatNo) {
 	        this.name = name;

@@ -95,9 +95,15 @@ public class BookingFlightServiceImpl implements BookingService{
 		// TODO Auto-generated method stub
 		 return bookingRepo.findByPnr(pnr)
 	                .switchIfEmpty(Mono.error(new RuntimeException("PNR not found")))
-	                .flatMap(b -> {
-	                    b.setStatus("CANCELLED");
-	                    return bookingRepo.save(b);
+	                .flatMap(booking -> {
+	                	 LocalDateTime journey = booking.getJourneyDateTime();
+	                     LocalDateTime now = LocalDateTime.now();
+	                     if (journey.minusHours(24).isBefore(now)) {
+	                         return Mono.error(new RuntimeException(
+	                             "Cancellation not allowed within 24 hours of journey"));
+	                     }
+	                     booking.setStatus("CANCELLED");
+	                     return bookingRepo.save(booking);
 	                })
 	                .then();
 	}
