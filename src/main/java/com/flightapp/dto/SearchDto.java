@@ -8,9 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class SearchDto {
 	@NotBlank(message = "From place is required")
 	private String fromPlace;
@@ -21,6 +18,14 @@ public class SearchDto {
 	@NotBlank(message = "Trip type is required (oneWay / roundTrip)")
 	private String tripType;
 	private LocalDate returnDate;
+	public SearchDto(String string, String string2, LocalDate now, String string3, LocalDate depature) {
+		// TODO Auto-generated constructor stub
+		this.fromPlace=string;
+		this.toPlace=string2;
+		this.depatureDate=now;
+		this.tripType=string3;
+		this.returnDate=depature;
+	}
 	public String getFromPlace() {
 		return fromPlace;
 	}

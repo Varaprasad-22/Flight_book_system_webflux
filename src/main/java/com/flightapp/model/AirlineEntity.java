@@ -8,9 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Document("airlines")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class AirlineEntity {
 
 	@Id

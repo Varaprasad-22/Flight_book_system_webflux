@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
+@Data
 public class FlightDto {
 	@NotBlank(message = "Airline name is required")
 	private String airlineName;

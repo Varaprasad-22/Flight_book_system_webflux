@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 
 @Document("Flights")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class FlightEntity {
 
 	@Id

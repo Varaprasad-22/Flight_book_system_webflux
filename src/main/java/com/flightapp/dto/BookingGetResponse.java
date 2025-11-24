@@ -7,15 +7,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class BookingGetResponse {
 	private int flightId;
 	private String pnr;
 	private List<PassengerDto> passengersList;
-	public BookingGetResponse(int i, String pnr, List<PassengerDto> passengersList) {
+	public BookingGetResponse(int flightId, String pnr, List<PassengerDto> passengersList) {
 		// TODO Auto-generated constructor stub
-		this.flightId = i;
+		this.flightId = flightId;
 	    this.pnr = pnr;
 	    this.passengersList = passengersList;
 	}
