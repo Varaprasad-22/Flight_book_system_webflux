@@ -27,6 +27,7 @@ public class BookingFlightServiceImpl implements BookingService{
 	private BookingRepository bookingRepo;
 	@Autowired
 	private FlightRepository flightRepo;
+	private static final Random RANDOM = new Random();
 	@Override
 	public Mono<ResponseEntity<String>> bookTicket(@Valid BookingDto bookingData, int flightId) {
 		// TODO Auto-generated method stub
@@ -38,7 +39,7 @@ public class BookingFlightServiceImpl implements BookingService{
                         return Mono.error(new RuntimeException("Not enough seats"));
                     }
 
-                    String pnr = String.valueOf(10000000 + new Random().nextInt(90000000));
+                    String pnr = String.valueOf(10000000 + RANDOM.nextInt(90000000));
 
                     BookingEntity booking = new BookingEntity();
                     booking.setPnr(pnr);

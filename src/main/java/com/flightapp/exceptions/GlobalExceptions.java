@@ -17,48 +17,48 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @RestControllerAdvice
 public class GlobalExceptions {
 
-	private static final String message="message";
+	private static final String MESSAGE="message";
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		Map<String, String> body = new HashMap<>();
 		String err = e.getBindingResult().getAllErrors().stream()
 				.map(a -> ((FieldError) a).getDefaultMessage()).findFirst().orElse("Invalid input");
-		body.put(message, err);
+		body.put(MESSAGE, err);
 		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException e) {
 		Map<String, String> body = new HashMap<>();
-		body.put(message, e.getMessage());
+		body.put(MESSAGE, e.getMessage());
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(BookingExceptions.class)
 	public ResponseEntity<Object> handleBookingException(BookingExceptions e) {
 		Map<String, String> body = new HashMap<>();
-		body.put("message", e.getMessage());
+		body.put(MESSAGE, e.getMessage());
 		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	public ResponseEntity<Object> handleTypeMismatch(MethodArgumentTypeMismatchException e) {
 		Map<String, String> body = new HashMap<>();
-		body.put(message, "Invalid input format");
+		body.put(MESSAGE, "Invalid input format");
 		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(IllegalArgumentException.class)
 	public ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException e) {
 		Map<String, String> body = new HashMap<>();
-		body.put(message, e.getMessage());
+		body.put(MESSAGE, e.getMessage());
 		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> handleGlobalException(Exception e) {
 		Map<String, String> body = new HashMap<>();
-		body.put(message, e.getMessage());
+		body.put(MESSAGE, e.getMessage());
 		return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
