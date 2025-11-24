@@ -19,7 +19,6 @@ public class BookingDto {
 	private Integer returnFlightId;
 	public BookingDto(String email, String name, int noOfSeats, List<PassengerDto> passengers,Integer outboundFlightId,
             Integer returnFlightId) {
-		// TODO Auto-generated constructor stub
 		this.emailId = email;
 	    this.name = name;
 	    this.noOfSeats = noOfSeats;

@@ -11,7 +11,6 @@ public class BookingGetResponse {
 	private String pnr;
 	private List<PassengerDto> passengersList;
 	public BookingGetResponse(int flightId, String pnr, List<PassengerDto> passengersList) {
-		// TODO Auto-generated constructor stub
 		this.flightId = flightId;
 	    this.pnr = pnr;
 	    this.passengersList = passengersList;

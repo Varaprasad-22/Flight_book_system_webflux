@@ -1,5 +1,6 @@
 package com.flightapp.service;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
@@ -27,10 +28,9 @@ public class BookingFlightServiceImpl implements BookingService{
 	private BookingRepository bookingRepo;
 	@Autowired
 	private FlightRepository flightRepo;
-	private static final Random RANDOM = new Random();
+	private static final Random RANDOM = new SecureRandom();
 	@Override
 	public Mono<ResponseEntity<String>> bookTicket(@Valid BookingDto bookingData, int flightId) {
-		// TODO Auto-generated method stub
 		return flightRepo.findByFlightId(flightId)
 				.switchIfEmpty(Mono.error(new RuntimeException("Flight not found")))
                 .flatMap(flight -> {
@@ -66,7 +66,6 @@ public class BookingFlightServiceImpl implements BookingService{
 
 	@Override
 	public Mono<BookingGetResponse> getBookingDetails(String pnr) {
-		// TODO Auto-generated method stub
 		 return bookingRepo.findByPnr(pnr)
 	                .switchIfEmpty(Mono.error(new RuntimeException("PNR not found")))
 	                .map(booking-> new BookingGetResponse(
@@ -78,7 +77,6 @@ public class BookingFlightServiceImpl implements BookingService{
 
 	@Override
 	public Flux<BookingDto> getHistoryByEmail(String email) {
-		// TODO Auto-generated method stub
 		return bookingRepo.findByEmail(email)
                 .map(b -> new BookingDto(
                         b.getEmail(),
@@ -92,7 +90,6 @@ public class BookingFlightServiceImpl implements BookingService{
 
 	@Override
 	public Mono<Void> cancelBooking(String pnr) {
-		// TODO Auto-generated method stub
 		 return bookingRepo.findByPnr(pnr)
 	                .switchIfEmpty(Mono.error(new RuntimeException("PNR not found")))
 	                .flatMap(booking -> {

@@ -1,6 +1,5 @@
 package com.flightapp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +25,13 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/v1.0/flight")
 public class FlightBookingController {
 
-	@Autowired
-	private FlightService flightService;
-	@Autowired
-	private BookingService bookingService;
+	 private final FlightService flightService;
+	 private final BookingService bookingService;
+
+	 public FlightBookingController(FlightService flightService, BookingService bookingService) {
+	    this.flightService = flightService;
+	    this.bookingService = bookingService;
+	 }
 	
 	@PostMapping("/airline/inventory/add")
 	public Mono<ResponseEntity<Integer>> addFlight(@RequestBody @Valid FlightDto flight){

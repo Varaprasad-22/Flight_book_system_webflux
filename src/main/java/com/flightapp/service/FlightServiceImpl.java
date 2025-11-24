@@ -25,7 +25,6 @@ public class FlightServiceImpl implements FlightService{
 	private FlightRepository flightRepo;
 	@Override
 	public Mono<ResponseEntity<Integer>> addFlight(@Valid FlightDto flightDto) {
-		// TODO Auto-generated method stub
 		return flightRepo.count()
 				.map(count -> Math.toIntExact(count) + 1)
 	            .map(nextId -> {
@@ -52,7 +51,6 @@ public class FlightServiceImpl implements FlightService{
 
 	@Override
 	public Flux<SearchResultDto> search(@Valid SearchDto searchData) {
-		// TODO Auto-generated method stub
 		LocalDateTime start = searchData.getDepatureDate().atStartOfDay();
         LocalDateTime end = start.plusDays(1);
         

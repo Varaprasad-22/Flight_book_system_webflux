@@ -17,7 +17,6 @@ public class SearchDto {
 	private String tripType;
 	private LocalDate returnDate;
 	public SearchDto(String string, String string2, LocalDate now, String string3, LocalDate depature) {
-		// TODO Auto-generated constructor stub
 		this.fromPlace=string;
 		this.toPlace=string2;
 		this.depatureDate=now;
