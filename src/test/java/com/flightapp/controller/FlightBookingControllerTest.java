@@ -121,4 +121,13 @@ public class FlightBookingControllerTest {
 
 		webClient.delete().uri("/api/v1.0/flight/booking/cancel/PNR12345").exchange().expectStatus().isNoContent();
 	}
+	
+	@Test
+    void testGetTicketNotFound() {
+		Mockito.when(bookingService.getBookingDetails("X"))
+        .thenReturn(Mono.error(new RuntimeException("PNR not found")));
+		
+		webClient.get().uri("/api/v1.0/flight/ticket/X").exchange()
+		.expectStatus().isNotFound();
+	}
 }

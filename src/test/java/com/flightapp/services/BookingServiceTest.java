@@ -77,15 +77,41 @@ public class BookingServiceTest {
     }
     @Test
     void testGetHistoryByEmail() {
-        BookingEntity b = new BookingEntity();
-        b.setEmail("varaprasad22@gmail.com");
-        b.setName("Vara");
-        b.setPassengers(List.of());
-        when(bookingRepo.findByEmail("varaprasad22@gmail.com")).thenReturn(Flux.just(b));
+        BookingEntity booking = new BookingEntity();
+        booking.setEmail("varaprasad22@gmail.com");
+        booking.setName("Vara");
+        booking.setPassengers(List.of());
+        when(bookingRepo.findByEmail("varaprasad22@gmail.com")).thenReturn(Flux.just(booking));
 
         StepVerifier.create(bookingService.getHistoryByEmail("varaprasad22@gmail.com"))
                 .expectNextCount(1)
                 .verifyComplete();
     }
+    @Test
+    void testCancelBooking() {
+        BookingEntity booking = new BookingEntity();
+        booking.setPnr("ABC123");
+        booking.setJourneyDateTime(LocalDateTime.now().plusDays(2));
+        booking.setStatus("BOOKED");
 
+        when(bookingRepo.findByPnr("ABC123")).thenReturn(Mono.just(booking));
+        when(bookingRepo.save(any())).thenReturn(Mono.just(booking));
+
+        StepVerifier.create(bookingService.cancelBooking("ABC123"))
+                .verifyComplete();
+
+        assertThat(booking.getStatus()).isEqualTo("CANCELLED");
+    }
+    @Test
+    void testCancelBookingFail() {
+        BookingEntity booking = new BookingEntity();
+        booking.setJourneyDateTime(LocalDateTime.now().plusHours(5));
+
+        when(bookingRepo.findByPnr("ABC123")).thenReturn(Mono.just(booking));
+
+        StepVerifier.create(bookingService.cancelBooking("ABC123"))
+                .expectErrorMatches(e -> e.getMessage().contains("24 hours"))
+                .verify();
+    }
+    
 }
