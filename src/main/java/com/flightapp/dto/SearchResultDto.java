@@ -1,7 +1,7 @@
 package com.flightapp.dto;
 
 import java.util.List;
-import com.flightapp.dto.*;
+
 
 
 public class SearchResultDto {

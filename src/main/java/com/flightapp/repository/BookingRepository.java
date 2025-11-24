@@ -1,8 +1,5 @@
 package com.flightapp.repository;
-
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
-import org.springframework.http.ResponseEntity;
 
 import com.flightapp.model.BookingEntity;
 
